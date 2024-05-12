@@ -1,8 +1,9 @@
-export default function Post() {
+import style from "./Post.module.css"
+export default function Post(props) {
   return (
-    <>
-      <h1>Aayush Tamang</h1>
-      <p>Refreshing react</p>
-    </>
+    <li className={style.post}>
+      <p className={style.author}>{props.author}</p>
+      <p className={style.text}>{props.body}</p>
+    </li>
   )
 }
