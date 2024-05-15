@@ -7,7 +7,6 @@ import Modal from "./Modal"
 export default function PostsList() {
   const [enteredBody, setEnteredBody] = useState("")
   const [enteredAuthor, setEnteredAuthor] = useState("")
-
   function handleBody(e) {
     setEnteredBody(e.target.value)
   }
