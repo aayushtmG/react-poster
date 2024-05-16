@@ -3,7 +3,6 @@ import "./App.css"
 import MainHeader from "./components/MainHeader"
 import { useState } from "react"
 
-const list = [{ author: "Aayush", body: "Hello this is react" }]
 function App() {
   const [isModalVisible, setIsModalVisible] = useState(false)
   function closeModalHandler() {

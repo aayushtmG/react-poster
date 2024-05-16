@@ -4,7 +4,7 @@ import NewPost from "./NewPost"
 import { useState } from "react"
 import Modal from "./Modal"
 
-export default function PostsList({ list, isPosting, onStopPosting }) {
+export default function PostsList({ isPosting, onStopPosting }) {
   const [enteredBody, setEnteredBody] = useState("")
   const [enteredAuthor, setEnteredAuthor] = useState("")
 
@@ -36,11 +36,18 @@ export default function PostsList({ list, isPosting, onStopPosting }) {
           />
         </Modal>
       )}
-      <ul className={styles.posts}>
-        {list.map((item) => (
-          <Post author={item.author} body={item.body}></Post>
-        ))}
-      </ul>
+      {list.length > 0 ? (
+        <ul className={styles.posts}>
+          {list.map((item) => (
+            <Post author={item.author} body={item.body}></Post>
+          ))}
+        </ul>
+      ) : (
+        <div style={{ textAlign: "center", color: "white" }}>
+          <h2>There are no posts yet.</h2>
+          <p>Start adding some!</p>
+        </div>
+      )}
     </>
   )
 }
