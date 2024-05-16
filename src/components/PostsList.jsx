@@ -3,45 +3,39 @@ import styles from "./PostsList.module.css"
 import NewPost from "./NewPost"
 import { useState } from "react"
 import Modal from "./Modal"
-import Header from "./Header"
 
-export default function PostsList({ list }) {
+export default function PostsList({ list, isPosting, onStopPosting }) {
   const [enteredBody, setEnteredBody] = useState("")
   const [enteredAuthor, setEnteredAuthor] = useState("")
-  const [isModalOpen, setIsModalOpen] = useState(false)
+
   function handleBody(e) {
     setEnteredBody(e.target.value)
   }
   function handleAuthor(e) {
     setEnteredAuthor(e.target.value)
   }
-  function closeModal() {
-    setIsModalOpen(false)
-  }
-  function openModal() {
-    setIsModalOpen(true)
-  }
   function submitNewPost() {
     list.push({
       author: enteredAuthor,
       body: enteredBody,
     })
-    closeModal()
+    setEnteredBody("")
+    setEnteredAuthor("")
+    onStopPosting()
   }
 
   return (
     <>
-      {isModalOpen && (
-        <Modal closeModal={closeModal}>
+      {isPosting && (
+        <Modal closeModal={onStopPosting}>
           <NewPost
             handleAuthor={handleAuthor}
             handleBody={handleBody}
             submitNewPost={submitNewPost}
-            closeModal={closeModal}
+            closeModal={onStopPosting}
           />
         </Modal>
       )}
-      <Header openModal={openModal}></Header>
       <ul className={styles.posts}>
         {list.map((item) => (
           <Post author={item.author} body={item.body}></Post>

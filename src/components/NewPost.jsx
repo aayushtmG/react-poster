@@ -7,7 +7,7 @@ export default function NewPost({
   closeModal,
 }) {
   return (
-    <form className={styles.form}>
+    <form className={styles.form} onSubmit={submitNewPost}>
       <p>
         <label htmlFor="name">Your name</label>
         <input type="text" id="name" required onChange={handleAuthor} />
@@ -16,12 +16,12 @@ export default function NewPost({
         <label htmlFor="body">Text</label>
         <textarea id="body" required rows={3} onChange={handleBody} />
       </p>
-      <button type="button" onClick={closeModal}>
-        Cancel
-      </button>
-      <button type="button" onClick={submitNewPost}>
-        Submit
-      </button>
+      <p className={styles.actions}>
+        <button type="button" onClick={closeModal}>
+          Cancel
+        </button>
+        <button>Submit</button>
+      </p>
     </form>
   )
 }
