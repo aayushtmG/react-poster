@@ -16,7 +16,6 @@ function App() {
       <MainHeader onCreatePost={openModalHandler}></MainHeader>
       <main>
         <PostsList
-          list={list}
           isPosting={isModalVisible}
           onStopPosting={closeModalHandler}
         ></PostsList>
